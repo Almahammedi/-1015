@@ -1,0 +1,67 @@
+ Define a menu  dictionary with various food items and their prices
+
+menu = {
+    1: {"option": "Coke", "price": 1.00},
+    2: {"option": "Dosa", "price": 2.50},
+    3: {"option": "Pizza", "price": 2.25},
+    4: {"option": "Taco", "price": 1.50},
+    5: {"option": "Tea", "price": 1.00},
+}
+
+# Display a message to indicate the start of a simple order task.
+# Show the available menu options with their numbers and prices.
+
+print("---- Task 1: Simple order ----")
+print("**Select menu option**")
+for option_num, details in menu.items():
+    print(f"({option_num}) {details['option']} [${details['price']:.2f}]")
+
+# Ask the user to choose a menu option and store their choice.
+
+user_input = int(input("Choose from the menu: "))
+print(f"Selection: {user_input}")
+
+# Check if the user's choice is valid, and calculate the selected item's price.
+# If the choice is invalid, set the amount to $0.
+
+if user_input not in menu:
+    print("Invalid selection - setting amount to $0 !")
+    amount = 0
+else:
+    amount = menu[user_input]["price"]
+    print(f"Amount: ${amount:.2f}")
+
+# Display a message to introduce the discount section.
+# Present options for age categories: Child, Adult, and Senior.
+
+print("**Discount**")
+print("(C) Child [under 18] (50% discount)")
+print("(A) Adult [18-64]")
+print("(S) Senior [65+] (25% discount)")
+
+# Ask the user to select an age category, and convert their input to uppercase.
+
+category = input("Selection age: ").upper()
+
+# Calculate the discount based on the chosen age category.
+
+discount = 0
+if category == "C":
+    discount = 0.5
+elif category == "S":
+    discount = 0.25
+elif category != "A":
+    print(f"Error: {category} is an invalid selection! Applying an extra charge.")
+    discount = -0.25
+
+# Calculate the final amount by applying the discount or extra charge penalty
+
+final_amount = amount - (amount * discount)
+
+
+
+print(f"""Amount: $ {amount:.2f}
+Discount: $ {amount * discount:.2f}
+------------------
+Total: $ {final_amount:.2f}
+""")
